@@ -1,0 +1,15 @@
+INSPIRE V4 GITHUB READY
+
+Cloudflare Worker is already configured in config.js:
+https://inspire-api.boy-hcblackowl.workers.dev
+
+Upload/replace ALL files in this folder into the ROOT of your GitHub repo:
+INSPIRE-2.0
+
+After commit:
+1. Wait for GitHub Pages deploy.
+2. On HP Chrome normal, clear site data for boyhcblackowl-coder.github.io.
+3. Open:
+   https://boyhcblackowl-coder.github.io/INSPIRE-2.0/
+4. Address bar must remain on github.io.
+5. Login using Employee ID + PIN.

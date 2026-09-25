@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0C0D0F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="INSPIRE">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="INSPIRE - The Digital Home of sOWLdiers">
+<title>INSPIRE</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="loading" class="loading">
+  <img src="icons/icon-192.png" alt="Black Owl">
+  <div class="wordmark">INSPIRE</div>
+  <div class="spinner"></div>
+</div>
+
+<section id="login" class="login-screen hidden">
+  <div class="login-wrap">
+    <div class="login-brand">
+      <img src="icons/icon-192.png" alt="Black Owl">
+      <div class="wordmark">INSPIRE</div>
+      <p>The Digital Home of sOWLdiers</p>
+    </div>
+    <div class="login-card">
+      <div class="eyebrow">WELCOME BACK</div>
+      <h1>Sign in to INSPIRE</h1>
+      <p class="muted">Use your Black Owl Employee ID and INSPIRE PIN.</p>
+      <div id="apiWarning" class="api-warning hidden"><strong>V4 setup belum selesai.</strong><br>Isi URL Cloudflare Worker di <code>config.js</code>.</div>
+      <label>Employee ID</label>
+      <input id="employeeId" autocomplete="username" placeholder="EMP001">
+      <label>PIN</label>
+      <div class="pin-row">
+        <input id="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="current-password">
+        <button type="button" onclick="togglePin()">Show</button>
+      </div>
+      <button id="loginBtn" class="primary full" onclick="doLogin()">Enter INSPIRE</button>
+      <div id="loginError" class="error"></div>
+      <div class="help"><strong>First time accessing?</strong><br>Ask TA & TM for your temporary INSPIRE PIN.</div>
+    </div>
+    <div class="footer">Black Owl Indonesia · HCGA · INSPIRE V4 PILOT</div>
+  </div>
+</section>
+
+<section id="app" class="hidden">
+  <aside class="sidebar">
+    <div class="side-brand"><img src="icons/icon-192.png" alt="Black Owl"><div><strong>INSPIRE</strong><small>Black Owl · V4</small></div></div>
+    <nav id="sideMenu"></nav>
+    <button class="profile" onclick="openProfile()">
+      <span id="avatar" class="avatar">S</span>
+      <span><strong id="profileName">sOWLdier</strong><small id="profileRole">Black Owl</small></span>
+      <span>›</span>
+    </button>
+  </aside>
+  <div class="main">
+    <header class="mobile-header">
+      <div class="mobile-brand"><img src="icons/icon-192.png" alt="Black Owl"><strong>INSPIRE</strong></div>
+      <button id="mobileAvatar" class="avatar" onclick="openProfile()">S</button>
+    </header>
+    <main id="content"></main>
+  </div>
+  <nav id="bottomNav" class="bottom-nav"></nav>
+</section>
+
+<div id="modal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
+<div id="toast" class="toast hidden"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){navigator.serviceWorker.register('./service-worker.js').catch(function(){})});
+}
+</script>
+</body>
+</html>
